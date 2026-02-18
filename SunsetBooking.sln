@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SunsetBooking.API", "SunsetBooking.API\SunsetBooking.API.csproj", "{6E4DA33B-4020-41B6-9CF1-028C582BFD61}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C0679716-8736-4DEA-8D6A-F1B138A6DF44}"
+	ProjectSection(SolutionItems) = preProject
+		compose.yaml = compose.yaml
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SunsetBooking.Domain", "SunsetBooking.Domain\SunsetBooking.Domain.csproj", "{79130E80-4E14-4FF7-8FEB-CA8C28FD2D75}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SunsetBooking.Tests", "SunsetBooking.Tests\SunsetBooking.Tests.csproj", "{914AC8FF-2F88-48B0-BE13-5BC74BAADE73}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6E4DA33B-4020-41B6-9CF1-028C582BFD61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E4DA33B-4020-41B6-9CF1-028C582BFD61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E4DA33B-4020-41B6-9CF1-028C582BFD61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E4DA33B-4020-41B6-9CF1-028C582BFD61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79130E80-4E14-4FF7-8FEB-CA8C28FD2D75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79130E80-4E14-4FF7-8FEB-CA8C28FD2D75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79130E80-4E14-4FF7-8FEB-CA8C28FD2D75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79130E80-4E14-4FF7-8FEB-CA8C28FD2D75}.Release|Any CPU.Build.0 = Release|Any CPU
+		{914AC8FF-2F88-48B0-BE13-5BC74BAADE73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{914AC8FF-2F88-48B0-BE13-5BC74BAADE73}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{914AC8FF-2F88-48B0-BE13-5BC74BAADE73}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{914AC8FF-2F88-48B0-BE13-5BC74BAADE73}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

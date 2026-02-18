@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Folder Include="HotelsRolodexFeature\Migrations\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="EFCore.NamingConventions" Version="8.0.3" />
+      <PackageReference Include="FluentValidation" Version="12.1.1" />
+      <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.1.1" />
+      <PackageReference Include="Mapster" Version="7.4.0" />
+      <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.3.9" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.24" />
+      <PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0" />
+      <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="8.0.1" />
+      <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.1" />
+      <PackageReference Include="Microsoft.Extensions.Logging" Version="10.0.3" />
+      <PackageReference Include="Newtonsoft.Json" Version="13.0.5-beta1" />
+      <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.11" />
+      <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL.NetTopologySuite" Version="8.0.11" />
+    </ItemGroup>
+
+    <PropertyGroup>
+        <EnableNETAnalyzers>False</EnableNETAnalyzers>
+        <AnalysisLevel>none</AnalysisLevel>
+        <RunAnalyzersDuringBuild>false</RunAnalyzersDuringBuild>
+        <RunAnalyzersDuringLiveAnalysis>false</RunAnalyzersDuringLiveAnalysis>
+        <RunAnalyzers>false</RunAnalyzers>
+    </PropertyGroup>
+</Project>

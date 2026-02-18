@@ -1,0 +1,70 @@
+services:
+  sunsetbooking.api:
+    image: sunsetbooking.api
+    container_name: sunsetbooking.api
+    build:
+      context: .
+      dockerfile: SunsetBooking.API/Dockerfile
+    depends_on:
+      sunsetbooking.db:
+        condition: service_healthy
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    networks:
+      - sunsetbooking-network
+
+  sunsetbooking.db:
+    image: postgis/postgis:16-3.4
+    container_name: ${DB_CONTAINER_NAME}
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: sunset_booking
+    ports:
+      - "5432:5432"
+    volumes:
+      - sunsetbooking-data:/var/lib/postgresql/data
+      - ./.postgres/init:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - sunsetbooking-network
+
+  sunsetbooking.keycloak:
+    image: quay.io/keycloak/keycloak:26.1.4
+    container_name: ${KEYCLOAK_CONTAINER_NAME}
+    command: start --import-realm
+    environment:
+      KC_HOSTNAME: ${KEYCLOAK_HOST_NAME}
+      KC_PROXY_HEADERS: "xforwarded"
+      KC_HTTP_ENABLED: "true"
+      KC_HEALTH_ENABLED: "true"
+      KC_HOSTNAME_STRICT: "false" 
+      KC_HOSTNAME_STRICT_HTTPS: "false"
+      KC_HOSTNAME_STRICT_BACKCHANNEL: "false"
+      KC_BOOTSTRAP_ADMIN_USERNAME: ${KEYCLOAK_ADMIN_USER}
+      KC_BOOTSTRAP_ADMIN_PASSWORD: ${KEYCLOAK_ADMIN_PASSWORD}
+      KC_DB: postgres
+      KC_DB_URL: jdbc:postgresql://${DB_CONTAINER_NAME}/keycloak
+      KC_DB_USERNAME: ${DB_USER}
+      KC_DB_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - ./.keycloak/imports:/opt/keycloak/data/import
+    ports:
+      - 8888:8080
+    restart: always
+    depends_on:
+      sunsetbooking.db:
+        condition: service_healthy 
+    networks:
+      - sunsetbooking-network
+
+networks:
+  sunsetbooking-network:
+    driver: bridge
+
+volumes:
+  sunsetbooking-data:

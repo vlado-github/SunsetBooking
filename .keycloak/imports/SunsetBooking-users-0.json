@@ -1,0 +1,26 @@
+{
+  "realm" : "SunsetBooking",
+  "users" : [ {
+    "id" : "6abd38ce-8c00-4997-8f23-5cb276e9958f",
+    "username" : "test@test.test",
+    "firstName" : "Nathan",
+    "lastName" : "Drake",
+    "email" : "test@test.test",
+    "emailVerified" : false,
+    "createdTimestamp" : 1771444279272,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "42b8bf2c-07a5-4c3b-8281-585196677851",
+      "type" : "password",
+      "createdDate" : 1771444279306,
+      "secretData" : "{\"value\":\"BOjyw2WONSP/48Cj5d1lOoQ2Pm/FeQIxgG6rUWoblnE=\",\"salt\":\"crkNtx6ZWxdFUFGD8FY3KQ==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-sunsetbooking" ],
+    "notBefore" : 0,
+    "groups" : [ ]
+  } ]
+}
