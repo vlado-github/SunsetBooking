@@ -11,7 +11,7 @@ public static class DbOptionsExtensions
         string connectionStringEnvVar = "",
         string? migrationsHistorySchema = null)
     {
-        if (!CurrentEnvironment.IsProduction() && !string.IsNullOrEmpty(connectionName))
+        if (CurrentEnvironment.IsLocal() && !string.IsNullOrEmpty(connectionName))
         {
             var configuration = new ConfigurationBuilder()
                 .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)

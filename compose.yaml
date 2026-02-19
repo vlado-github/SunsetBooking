@@ -8,8 +8,11 @@ services:
     depends_on:
       sunsetbooking.db:
         condition: service_healthy
+    ports:
+      - "5013:8080"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - SUNSET_BOOKING_HOTEL_ROLODEX_DB_CONNECTION=Server=${DB_CONTAINER_NAME};Port=5432;Database=sunset_booking;User Id=${DB_USER};Password=${DB_PASSWORD};SslMode=Prefer;Search Path=hotel_rolodex,public
     networks:
       - sunsetbooking-network
 
@@ -60,8 +63,10 @@ services:
       sunsetbooking.db:
         condition: service_healthy 
     networks:
-      - sunsetbooking-network
-
+      sunsetbooking-network:
+        aliases:
+          - keycloak.local
+          
 networks:
   sunsetbooking-network:
     driver: bridge
