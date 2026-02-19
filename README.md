@@ -24,6 +24,9 @@ From the repository's root directory, run command in terminal:
 docker compose up -d
 ```
 
-### Open API docs
+## Open API docs
 
 - Docker container: [http://localhost:5013/swagger/index.html](http://localhost:5013/swagger/index.html)
+
+## Postman collection
+Import files to _Postman_ from _.postman_ directory.
