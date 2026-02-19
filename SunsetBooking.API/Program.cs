@@ -48,6 +48,7 @@ builder.Services.AddFluentValidationAutoValidation();
 builder.Services.AddValidatorsFromAssemblyContaining<CommandBase>();
 
 // Set up domain layer
+builder.Services.AddMappings();
 builder.Services.AddHotelsRolodexFeature();
 
 // Add controllers

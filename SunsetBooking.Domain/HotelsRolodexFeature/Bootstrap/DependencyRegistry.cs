@@ -1,3 +1,6 @@
+using System.Reflection;
+using Mapster;
+using MapsterMapper;
 using Microsoft.Extensions.DependencyInjection;
 using SunsetBooking.Domain.Base.Commands;
 using SunsetBooking.Domain.Base.Queries;
@@ -27,6 +30,15 @@ public static class DependencyRegistry
         services.AddScoped<ICommandHandler<DeleteHotelEntryCommand, bool>, DeleteHotelEntryCommandHandler>();
 
         //Setup query handlers
-        services.AddScoped<IQueryHandler<GetNearestHotelsQuery, List<NearestHotelDto>>, GetNearestHotelsQueryHandler>();
+        services.AddScoped<IQueryHandler<GetNearestHotelsQuery, List<NearestHotelViewModel>>, GetNearestHotelsQueryHandler>();
+        services.AddScoped<IQueryHandler<GetHotelByIdQuery, HotelViewModel>, GetHotelByIdQueryHandler>();
+    }
+    
+    public static void AddMappings(this IServiceCollection services)
+    {
+        var typeAdapterConfig = TypeAdapterConfig.GlobalSettings;
+        typeAdapterConfig.Scan(Assembly.GetExecutingAssembly());
+        services.AddSingleton(typeAdapterConfig);
+        services.AddScoped<IMapper, ServiceMapper>();
     }
 }

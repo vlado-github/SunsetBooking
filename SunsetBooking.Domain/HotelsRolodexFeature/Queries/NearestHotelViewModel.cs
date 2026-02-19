@@ -1,6 +1,6 @@
 namespace SunsetBooking.Domain.HotelsRolodexFeature.Queries;
 
-public record NearestHotelDto(
+public record NearestHotelViewModel(
     long Id,
     string Name,
     decimal Price,

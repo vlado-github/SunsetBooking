@@ -15,28 +15,34 @@ public class HotelController : ControllerBase
     private readonly ICommandHandler<CreateHotelEntryCommand, long> _createHandler;
     private readonly ICommandHandler<UpdateHotelEntryCommand, long> _updateHandler;
     private readonly ICommandHandler<DeleteHotelEntryCommand, bool> _deleteHandler;
-    private readonly IQueryHandler<GetNearestHotelsQuery, List<NearestHotelDto>> _nearestHandler;
+    private readonly IQueryHandler<GetNearestHotelsQuery, List<NearestHotelViewModel>> _nearestHandler;
+    private readonly IQueryHandler<GetHotelByIdQuery, HotelViewModel> _getByIdHandler;
 
     public HotelController(
         ICommandHandler<CreateHotelEntryCommand, long> createHandler,
         ICommandHandler<UpdateHotelEntryCommand, long> updateHandler,
         ICommandHandler<DeleteHotelEntryCommand, bool> deleteHandler,
-        IQueryHandler<GetNearestHotelsQuery, List<NearestHotelDto>> nearestHandler)
+        IQueryHandler<GetNearestHotelsQuery, List<NearestHotelViewModel>> nearestHandler,
+        IQueryHandler<GetHotelByIdQuery, HotelViewModel> getByIdHandler)
     {
         _createHandler = createHandler;
         _updateHandler = updateHandler;
         _deleteHandler = deleteHandler;
         _nearestHandler = nearestHandler;
+        _getByIdHandler = getByIdHandler;
     }
 
     [HttpGet("nearest")]
-    public async Task<List<NearestHotelDto>> GetNearest([FromQuery] GetNearestHotelsQuery query)
+    public async Task<List<NearestHotelViewModel>> GetNearest([FromQuery] GetNearestHotelsQuery query)
     {
         return await _nearestHandler.HandleAsync(query);
     }
 
-    [HttpGet]
-    public async Task<string> GetById() => "Hello World!";
+    [HttpGet("{id}")]
+    public async Task<HotelViewModel> GetById(long id)
+    {
+        return await _getByIdHandler.HandleAsync(new GetHotelByIdQuery(id));
+    }
 
     [HttpPost]
     public async Task<long> Create(CreateHotelEntryCommand command)
@@ -45,11 +51,10 @@ public class HotelController : ControllerBase
         return id;
     }
 
-    [HttpPut("{id}")]
-    public async Task<long> Update(long id, UpdateHotelEntryCommand command)
+    [HttpPut()]
+    public async Task<long> Update(UpdateHotelEntryCommand command)
     {
-        var updatedCommand = command with { Id = id };
-        return await _updateHandler.HandleAsync(updatedCommand);
+        return await _updateHandler.HandleAsync(command);
     }
 
     [HttpDelete("{id}")]

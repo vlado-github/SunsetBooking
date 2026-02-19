@@ -34,7 +34,7 @@ public class GetNearestHotelsTests : IntegrationTestBase
             s.StatusCodeShouldBeOk();
         });
 
-        var hotels = result.ReadAsJson<List<NearestHotelDto>>();
+        var hotels = result.ReadAsJson<List<NearestHotelViewModel>>();
 
         // Assert
         Assert.NotNull(hotels);
@@ -59,7 +59,7 @@ public class GetNearestHotelsTests : IntegrationTestBase
             s.StatusCodeShouldBeOk();
         });
 
-        var hotels = result.ReadAsJson<List<NearestHotelDto>>();
+        var hotels = result.ReadAsJson<List<NearestHotelViewModel>>();
 
         // Assert
         Assert.NotNull(hotels);
@@ -76,7 +76,7 @@ public class GetNearestHotelsTests : IntegrationTestBase
             s.StatusCodeShouldBeOk();
         });
 
-        var hotels = result.ReadAsJson<List<NearestHotelDto>>();
+        var hotels = result.ReadAsJson<List<NearestHotelViewModel>>();
 
         // Assert
         Assert.NotNull(hotels);
@@ -96,7 +96,7 @@ public class GetNearestHotelsTests : IntegrationTestBase
             s.StatusCodeShouldBeOk();
         });
 
-        var hotels = result.ReadAsJson<List<NearestHotelDto>>();
+        var hotels = result.ReadAsJson<List<NearestHotelViewModel>>();
 
         // Assert
         Assert.Single(hotels);

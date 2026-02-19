@@ -5,7 +5,7 @@ using SunsetBooking.Domain.HotelsRolodexFeature.Repositories;
 
 namespace SunsetBooking.Domain.HotelsRolodexFeature.Queries;
 
-public class GetNearestHotelsQueryHandler : QueryHandlerBase<GetNearestHotelsQuery, List<NearestHotelDto>>
+public class GetNearestHotelsQueryHandler : QueryHandlerBase<GetNearestHotelsQuery, List<NearestHotelViewModel>>
 {
     private readonly HotelRolodexDbContext _dbContext;
 
@@ -14,7 +14,7 @@ public class GetNearestHotelsQueryHandler : QueryHandlerBase<GetNearestHotelsQue
         _dbContext = dbContext;
     }
 
-    public override async Task<List<NearestHotelDto>> HandleAsync(GetNearestHotelsQuery query)
+    public override async Task<List<NearestHotelViewModel>> HandleAsync(GetNearestHotelsQuery query)
     {
         var searchPoint = new Point(query.Longitude, query.Latitude) { SRID = 4326 };
         var radiusInMeters = query.RadiusInKm * 1000;
@@ -35,7 +35,7 @@ public class GetNearestHotelsQueryHandler : QueryHandlerBase<GetNearestHotelsQue
             })
             .ToListAsync();
 
-        return rows.Select(h => new NearestHotelDto(
+        return rows.Select(h => new NearestHotelViewModel(
             h.Id,
             h.Name,
             h.Price,

@@ -31,7 +31,7 @@ public class UpdateHotelEntryTests : IntegrationTestBase
         // Act
         var result = await Host.Scenario(s =>
         {
-            s.Put.Json(updateCommand).ToUrl($"/Hotel/{hotelId}");
+            s.Put.Json(updateCommand).ToUrl($"/Hotel");
             s.StatusCodeShouldBeOk();
         });
 
@@ -58,7 +58,7 @@ public class UpdateHotelEntryTests : IntegrationTestBase
         // Act & Assert
         await Host.Scenario(s =>
         {
-            s.Put.Json(updateCommand).ToUrl("/Hotel/999");
+            s.Put.Json(updateCommand).ToUrl("/Hotel");
             s.StatusCodeShouldBe(404);
         });
     }
@@ -69,12 +69,12 @@ public class UpdateHotelEntryTests : IntegrationTestBase
         // Arrange
         var hotelId = await CreateHotel();
         var updateCommand = new UpdateHotelEntryCommand(
-            0, "", 250m, new GeoLocation(30, 40));
+            hotelId, "", 250m, new GeoLocation(30, 40));
 
         // Act & Assert
         await Host.Scenario(s =>
         {
-            s.Put.Json(updateCommand).ToUrl($"/Hotel/{hotelId}");
+            s.Put.Json(updateCommand).ToUrl($"/Hotel");
             s.StatusCodeShouldBe(400);
         });
     }
@@ -85,12 +85,12 @@ public class UpdateHotelEntryTests : IntegrationTestBase
         // Arrange
         var hotelId = await CreateHotel();
         var updateCommand = new UpdateHotelEntryCommand(
-            0, "Updated Hotel", 0m, new GeoLocation(30, 40));
+            hotelId, "Updated Hotel", 0m, new GeoLocation(30, 40));
 
         // Act & Assert
         await Host.Scenario(s =>
         {
-            s.Put.Json(updateCommand).ToUrl($"/Hotel/{hotelId}");
+            s.Put.Json(updateCommand).ToUrl($"/Hotel");
             s.StatusCodeShouldBe(400);
         });
     }
