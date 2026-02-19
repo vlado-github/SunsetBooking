@@ -29,4 +29,8 @@ docker compose up -d
 - Docker container: [http://localhost:5013/swagger/index.html](http://localhost:5013/swagger/index.html)
 
 ## Postman collection
-Import files to _Postman_ from _.postman_ directory.
+1. Import files to _Postman_ from _.postman_ directory.
+2. Use _Authentication_ tab under _SunsetBooking_ collection and request _Get Access Token_
+3. Register or sign in (use of fake email is ok)
+4. Invoke actions from the collection
+
